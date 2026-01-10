@@ -1,3 +1,7 @@
+*.exe
+.vscode/
+# Below is the stuff from the template above is the stuff that I added
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
