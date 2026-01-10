@@ -1,5 +1,5 @@
 import pyflamegpu
-from Compoxel.src.model import create_model
+from src.model import create_model
 from test import timmy 
 
 timmy(1) 
