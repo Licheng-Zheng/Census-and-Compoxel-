@@ -1,3 +1,8 @@
+# --- ADD THIS LINE ---
+import pyflamegpu 
+# ---------------------
+from src.utils import load_kernel
+
 def create_model():
     model = pyflamegpu.ModelDescription("Compoxel_Sim")
     atom = model.newAgent("Atom")
