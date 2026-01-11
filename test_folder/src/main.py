@@ -144,3 +144,19 @@ anim = FuncAnimation(fig, update, frames=300, interval=50, blit=False)
 # Note: This might take a minute to process as it runs the simulation frames
 plt.close() # Prevents a duplicate static plot from appearing
 HTML(anim.to_html5_video())
+
+# ... existing code ...
+
+from IPython.display import HTML, display
+import shutil
+
+# Save animation to a file
+output_filename = 'boids_simulation.mp4'
+anim.save(output_filename, writer='ffmpeg', dpi=200)
+
+# Provide a download link in the notebook
+def create_download_link(filename, link_text):
+    from IPython.display import FileLink
+    return FileLink(filename, result_html_prefix=f'<a href="{filename}" download>{link_text}</a>')
+
+display(create_download_link(output_filename, "Download Simulation Video"))
