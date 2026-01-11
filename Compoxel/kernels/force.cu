@@ -4,4 +4,6 @@
 
 FLAMEGPU_AGENT_FUNCTION(force_kernel, flamegpu::MessageSpatial3D, flamegpu::MessageNone) {
     return flamegpu::ALIVE;
+
+    for (int i=0; i<10; i)
 }
