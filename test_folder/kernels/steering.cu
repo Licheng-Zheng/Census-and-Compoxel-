@@ -60,3 +60,4 @@ FLAMEGPU_AGENT_FUNCTION(steering, flamegpu::MessageSpatial3D, flamegpu::MessageN
     FLAMEGPU->setVariable<float>("fz", final_f.z);
     
     return flamegpu::ALIVE;
+}

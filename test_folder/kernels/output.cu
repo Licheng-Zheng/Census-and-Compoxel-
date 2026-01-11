@@ -6,3 +6,4 @@ FLAMEGPU_AGENT_FUNCTION(output_message, flamegpu::MessageNone, flamegpu::Message
     FLAMEGPU->message_out.setVariable<float>("vy", FLAMEGPU->getVariable<float>("vy"));
     FLAMEGPU->message_out.setVariable<float>("vz", FLAMEGPU->getVariable<float>("vz"));
     return flamegpu::ALIVE;
+}
