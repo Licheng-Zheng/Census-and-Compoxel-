@@ -45,7 +45,7 @@ message.newVariableFloat("vy")
 message.newVariableFloat("vz")
 message.setMin(-20.0, -20.0, -20.0)
 message.setMax(20.0, 20.0, 20.0)
-message.setRadius(10.0)
+message.setRadius(10.0) 
 
 # 6. Agent Functions (CUDA C++)
 
