@@ -50,9 +50,9 @@ message.setRadius(10.0)
 # 6. Agent Functions (CUDA C++)
 
 # 7. Registration and Layers
-output_code = load_cuda_code("kernels/output_message.cu")
-steering_code = load_cuda_code("kernels/steering.cu")
-integration_code = load_cuda_code("kernels/integration.cu")
+output_code = load_cuda_code("../kernels/output.cu")        # note output.cu filename (not output_message.cu)
+steering_code = load_cuda_code("../kernels/steering.cu")
+integration_code = load_cuda_code("../kernels/integration.cu")
 
 out_func = bird_agent.newRTCFunction("output_message", output_code)
 out_func.setMessageOutput("LocationMessage")
