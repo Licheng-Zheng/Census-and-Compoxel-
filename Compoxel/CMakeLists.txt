@@ -40,9 +40,10 @@ add_executable(CompoxelVis
 
 target_include_directories(CompoxelVis PRIVATE 
     ${flamegpu2_SOURCE_DIR}/include
+    ${flamegpu2_BINARY_DIR}/_deps/jitify-src
 )
 
 
 # Link the FlameGPU2 library to your executable
-target_link_libraries(CompoxelVis PRIVATE FLAMEGPU2::flamegpu2)
+target_link_libraries(CompoxelVis PRIVATE flamegpu2)
 
