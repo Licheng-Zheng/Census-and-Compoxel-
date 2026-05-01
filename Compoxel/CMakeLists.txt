@@ -39,4 +39,4 @@ add_executable(CompoxelVis
 
 # Link the FlameGPU2 library to your executable
 target_link_libraries(CompoxelVis PRIVATE FLAMEGPU2::flamegpu2)
--
+
