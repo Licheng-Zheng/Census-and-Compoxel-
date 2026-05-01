@@ -1,4 +1,17 @@
+#include "flamegpu/flamegpu.h"
 
+FLAMEGPU_AGENT_FUNCTION(test_func, flamegpu::MessageNone, flamegpu::MessageNone) {
+    return flamegpu::ALIVE;
+}
 
-// Export the current state of all agents to a JSON file
-cudaSimulation.exportData("output_step_1.json");
+int main(int argc, const char ** argv) {
+    flamegpu::ModelDescription model("TestModel");
+    flamegpu::AgentDescription agent = model.newAgent("electron");
+    agent.newVariable<float>("x");
+    agent.newFunction("test", test_func);
+
+    flamegpu::CUDASimulation sim(model);
+    sim.initialise(argc, argv);
+    sim.step();
+    return 0;
+}
