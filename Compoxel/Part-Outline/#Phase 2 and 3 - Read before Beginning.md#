@@ -1,0 +1,4 @@
+##### Essential Idea 
+Using agents to model the electron and nucleus behavior (protons and nuetrons together, as they're usually treated as one unless energies get high enough to break something) 
+
+Using FlameGPU messages to distribute a 3d gradient for repulsion/attraction to calculate agent locations in the next time step. (Only need this in phase 2 and 3 afterwards as pahse A is just rejection sampling) 

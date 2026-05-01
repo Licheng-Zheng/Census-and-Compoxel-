@@ -1,0 +1,54 @@
+#### Method and Purpose
+Rejection sampling 
+- Spawn a huge pool of electrons, determine how likely it would be to find an electron there, they figure out if it should be there. Filter and we have a result based on previous knowledge
+
+- Used to test out my rendering pipeline before I get into actually calculating things (so I get screwed over one thing at a time)
+
+#### Limitations 
+- Absolutely no predictive power (it is completely based on equations that have already been created and cannot be used to determine anything that does not have an equation already. 
+
+#### Things to Implement  + Where to implement them 
+**rejection_sample.cu** - quantum directory `Compoxel/kernels/quantum/rejection_sample.cu`
+- It takes the electron's position and the proton (neutron)'s position from the global environment property, calculates distance, computes the orbital probability density, uses a number and determines if it should be there. 
+
+Monte Carlo Rejection Sampling algorithm
+$$$\U \leq \frac{f(X)){Mg(X)}$$$ 
+- Candidate X from the proposed distribution of g(x)
+- Draws a random number U from interval (0, 1) 
+- If the above equation holds, then candidate X is accepted
+- If its not met, then it is rejected and continued until we get the desired number of candidates 
+
+**quantum.py** - modes directory `Compoxel/src/modes/quantum.py`
+- Where I use the pyflamegpu API to define simulation arch
+
+
+3. The Orchestrator (The Loop & Visualizer)
+Location: Compoxel/src/director.py
+
+Think of the Director as the bridge between your FlameGPU simulation and your OpenGL/Video export pipeline.
+
+What it does:
+
+Takes the model built in quantum.py and creates a pyflamegpu.CUDASimulation instance.
+
+Generates the initial population of agents. For Phase A, you need a function here that scatters 1,000,000 electrons randomly within a bounding box, and places 1 proton in the center.
+
+Contains the step() loop.
+
+Hooks into your visualization stack (this is where you will eventually grab the agent data to push to your OpenGL Vertex Buffer).
+
+4. The Entry Point
+Location: Compoxel/main.py
+
+Keep this file as minimal as possible.
+
+What it does: Parses any command-line arguments or reads your config.json (e.g., number of electrons, mode selection). It instantiates the Director with the quantum mode and calls director.run().
+
+
+rejection_sample.cu: Write the probability math.
+
+quantum.py: Tell FlameGPU about your agents and the math.
+
+director.py: Spawn the random points and manage the simulation loop.
+
+main.py: Run it.
