@@ -29,10 +29,6 @@ set(FLAMEGPU_BUILD_TESTS OFF CACHE BOOL "Disable building FLAMEGPU2 tests" FORCE
 # Make FlameGPU2 available to your project
 FetchContent_MakeAvailable(flamegpu2)
 
-target_include_directories(CompoxelVis PRIVATE 
-    ${flamegpu2_SOURCE_DIR}/include
-)
-
 # ---------------------------------------------------------
 # 2. Build Your Executable
 # ---------------------------------------------------------
@@ -40,6 +36,12 @@ target_include_directories(CompoxelVis PRIVATE
 add_executable(CompoxelVis 
     src/main.cu
 )
+
+
+target_include_directories(CompoxelVis PRIVATE 
+    ${flamegpu2_SOURCE_DIR}/include
+)
+
 
 # Link the FlameGPU2 library to your executable
 target_link_libraries(CompoxelVis PRIVATE FLAMEGPU2::flamegpu2)
