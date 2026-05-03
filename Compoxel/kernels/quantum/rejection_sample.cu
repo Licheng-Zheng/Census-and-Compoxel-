@@ -1,5 +1,3 @@
-#include "/usr/local/lib/python3.12/site-packages/nvidia/curand/include/curand_kernel.h"
-
 FLAMEGPU_AGENT_FUNCTION(rejection_sampling, flamegpu::MessageNone, flamegpu::MessageNone) {
     float x = FLAMEGPU->getVariable<float>("x");
     float y = FLAMEGPU->getVariable<float>("y");
