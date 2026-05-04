@@ -30,15 +30,59 @@ FLAMEGPU_AGENT_FUNCTION(rejection_sampling, flamegpu::MessageNone, flamegpu::Mes
             float angular_part = (3.0f * z_sq - r_sq);
             p = (angular_part * angular_part * expf(-2.0f * r / 3.0f)) / 43.85f;
             break;
-    }
-    
-    float dice_roll = FLAMEGPU->random.uniform<float>();
-    
-    if (dice_roll < p) {
-        FLAMEGPU->setVariable<float>("alpha", 1.0f);
-    } else {
-        FLAMEGPU->setVariable<float>("alpha", 0.0f);
-    }
+               
+
+case 3: // 2s Orbital
+{
+float radial_2s = (2.0f - r);
+p = (radial_2s * radial_2s * expf(-r)) / 0.191f;
+}
+break;
+}
+
+case 6: // 3s Orbital
+{
+float poly = 6.0f - 6.0f * r + (r * r);
+p = (poly * poly * expf(-2.0f * r / 3.0f)) / 3.73f;
+}
+break;
+case 7: // 3p_z Orbital
+p = (z * z * (4.0f - r) * (4.0f - r) * expf(-2.0f * r / 3.0f)) / 1.51f;
+break;
+
+case 8: // 3p_x Orbital
+p = (x * x * (4.0f - r) * (4.0f - r) * expf(-2.0f * r / 3.0f)) / 1.51f;
+break;
+
+case 9: // 3p_y Orbital
+p = (y * y * (4.0f - r) * (4.0f - r) * expf(-2.0f * r / 3.0f)) / 1.51f;
+break;
+case 10: // 3d_xy
+p = (x * x * y * y * expf(-2.0f * r / 3.0f)) / 6.58f;
+break;
+
+case 11: // 3d_yz
+p = (y * y * z * z * expf(-2.0f * r / 3.0f)) / 6.58f;
+break;
+
+case 12: // 3d_xz
+p = (x * x * z * z * expf(-2.0f * r / 3.0f)) / 6.58f;
+break;
+
+case 13: // 3d_x2-y2
+{
+float diff = (x * x - y * y);
+p = (diff * diff * expf(-2.0f * r / 3.0f)) / 26.33f;
+}
+break;
+
+float dice_roll = FLAMEGPU->random.uniform<float>();
+
+if (dice_roll < p) {
+FLAMEGPU->setVariable<float>("alpha", 1.0f);
+} else {
+FLAMEGPU->setVariable<float>("alpha", 0.0f);
+}
     
     return flamegpu::ALIVE;
 }
