@@ -10,7 +10,7 @@ FLAMEGPU_AGENT_FUNCTION(rejection_sampling, flamegpu::MessageNone, flamegpu::Mes
     float r = sqrtf(r_sq);
     float p = 0.0f;
     
-    // 3. Orbital Probability Density Logic (normalized to peak = 1.0)
+    // 3. Orbital Probability Density Logic
     switch(orbital_id) {
         // --- n=1 ---
         case 0: // 1s
@@ -43,20 +43,20 @@ FLAMEGPU_AGENT_FUNCTION(rejection_sampling, flamegpu::MessageNone, flamegpu::Mes
             break;
         case 6: // 3pz
             {
-                float poly = (4.0f - r);
-                p = (z * z * poly * poly * expf(-2.0f * r / 3.0f)) / 1.51f;
+                float poly_p = (4.0f - r);
+                p = (z * z * poly_p * poly_p * expf(-2.0f * r / 3.0f)) / 1.51f;
             }
             break;
         case 7: // 3px
             {
-                float poly = (4.0f - r);
-                p = (x * x * poly * poly * expf(-2.0f * r / 3.0f)) / 1.51f;
+                float poly_p = (4.0f - r);
+                p = (x * x * poly_p * poly_p * expf(-2.0f * r / 3.0f)) / 1.51f;
             }
             break;
         case 8: // 3py
             {
-                float poly = (4.0f - r);
-                p = (y * y * poly * poly * expf(-2.0f * r / 3.0f)) / 1.51f;
+                float poly_p = (4.0f - r);
+                p = (y * y * poly_p * poly_p * expf(-2.0f * r / 3.0f)) / 1.51f;
             }
             break;
         case 9: // 3dz2
@@ -92,7 +92,6 @@ FLAMEGPU_AGENT_FUNCTION(rejection_sampling, flamegpu::MessageNone, flamegpu::Mes
     if (dice_roll < p) {
         FLAMEGPU->setVariable<float>("alpha", 1.0f);
     } else {
-        // We set alpha to 0 for visualization or potential removal
         FLAMEGPU->setVariable<float>("alpha", 0.0f);
     }
     
